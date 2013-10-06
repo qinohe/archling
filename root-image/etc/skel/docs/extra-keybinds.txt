@@ -1,0 +1,49 @@
+extra keybinds
+--------------
+
+Check i3wm config file, next to this tab.
+
+* By default there is no menu, only dmenu, which is created dynamically.
+However, there is xfce4-panel on this build, for people how can't live without a panel.
+Xfce4-panel is created dynamic,  but not enabled on system start.
+execute xfce4-panel 
+mod4+x                  executes xfce4-panel
+kill xfce4-panel
+mod4+Shift+x        kills xfce4-panel -q
+
+* Cycle trough layouts, change container layout (stacked, tabbed, toggle split) Trilby made this ;) 
+mod4+z                   opens script /home/$USER/.i3/scripts/switch-layout
+
+
+* Next keybinds gets you into the "brows" mode  'mod4+b, which is the Windows  key, if you have it, otherwise change it before you build it next time;), 
+after you hit 'mod4+b' a window opens with the urgency hint set, which means no more then waiting for input from you.
+If you after that type one of the letters below, dwb will open and/or that page for you.
+	 a                opens or adds  https://archlinux.org, 
+	 b                opens or adds  https://bugs.archlinux.org, 
+	 d                opens or adds  https://duckduckgo.com, 
+	 f                opens or adds  https://bbs.archlinux.org, 
+	 g                opens or adds  http://google.com, 
+	 i                opens or adds  http://i3wm.org/docs/userguide.html, 
+	 k                opens or adds  https://www.kernel.org/, 
+	 l                opens or adds  https://linux.org, 
+	 o                opens or adds  https://openvz.org, 
+	 r                opens or adds  http://reddit.com, 
+	 s                opens or adds  http://slashdot.org, 
+	 y                opens or adds  https://youtube.com, 
+	 w                opens or adds  https://wiki.archlinux.org, 
+
+Dwb will open on workspace 1:explore, as that is predefined in the config.
+
+*Next the “tray” mode, which will open, or pkill a tray program.
+By default, no tray programs are opened.
+The procedure is the same as with the brows mode. So I only add the commands here.
+$mod+t  enter the tray mode
+         b                blueman-applet
+    	 Shift+b          pkill blueman-applet
+    	 n                /usr/bin/nm-applet --sm-disable
+    	 Shift+n          pkill nm-applet
+
+
+
+# exit i3, with dmenu logout/reboot/poweroff Mr.Green(archbang) made this.is far as know.
+mod4+Shift+t exec /home/$USER/.i3/scripts/power

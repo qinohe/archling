@@ -1,0 +1,273 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+#
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below. ISO 10646 = Unicode
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, if you need a lot of unicode glyphs or
+# right-to-left text rendering, you should instead use pango for rendering and
+# chose a FreeType font, such as:
+# font pango:DejaVu Sans Mono 10
+
+# set user name
+set $USER ali
+# use Mouse+Mod1 to drag floating windows to their wanted position
+floating_modifier Mod1
+# configured modifier is 'win' key
+set $mod Mod4
+# set $mod Mod1
+# use these dmenu color
+set $dmenu dmenu_run -fn 'Sans-10' -nf '#FFFFFF' -sb '#2288CC' -nb '#AA7722' -p -'Dmenu'
+
+# layout mode for new containers
+workspace_layout tabbed
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec $dmenu
+# start dmenu-desktop
+bindsym $mod+y exec i3-dmenu-desktop
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# change container layout with a script, Trilby mad this.
+bindsym $mod+z exec /home/$USER/.i3/scripts/switch-layout
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# scratchpad, invisible floating window
+# make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+# border of every new window opened
+new_window pixel 0
+hide_edge_borders both
+
+# create i3 socket
+ipc-socket /home/$USER/.i3/i3-ipc.sock
+
+# execute these programs with the following keybinds
+# execute xfce4-panel
+bindsym $mod+x exec xfce4-panel
+# kill xfce4-panel
+bindsym $mod+Shift+x exec xfce4-panel -q
+
+# assign specific window to predefined workspace
+assign [class="^Geany$"] 2:dev
+
+# switch to workspace
+bindsym $mod+1 workspace 1:explore
+bindsym $mod+2 workspace 2:dev
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym Mod1+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1:explore
+bindsym $mod+Shift+2 move container to workspace 2:dev
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# turn back to penultimate workspace
+workspace_auto_back_and_forth yes
+
+# rename the workspaces
+bindsym $mod+n exec i3-input -F 'rename workspace to %s' -P 'New name: '
+
+# execute these programs on i3 start
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id geany
+exec --no-startup-id dwb -R https://www.archlinux.org https://wiki.archlinux.org http://www.i3wm.org/docs https://www.kernel.org file:///home/ali/docs/i3.html file:///home/ali/docs/index.html; workspace 1:explore;
+exec --no-startup-id i3-msg "workspace 19; exec --no-startup-id xterm -e ranger; workspace 1:explore;"
+exec --no-startup-id i3-msg "workspace 20; exec --no-startup-id xterm -e mc; workspace 1:explore;"
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3, (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#  exit i3, uses script 'power' to call dmenu logout/reboot/poweroff
+# (logs you out of your X session, reboot or poweroff)
+bindsym $mod+Shift+t exec /home/$USER/.i3/scripts/power
+
+# delaying urgency hint reset on workspace change
+force_display_urgency_hint 500 ms
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j           resize shrink width 10 px or 10 ppt
+        bindsym k           resize grow height 10 px or 10 ppt
+        bindsym l           resize shrink height 10 px or 10 ppt
+        bindsym semicolon   resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+mode "brows" {
+	# These browser presets are available,
+	# as soon as the 'brows' mode is entered
+	bindsym a exec dwb  https://archlinux.org, mode "default"
+	bindsym b exec dwb  https://bugs.archlinux.org, mode "default"
+	bindsym d exec dwb  https://duckduckgo.com, mode "default"
+	bindsym f exec dwb  https://bbs.archlinux.org, mode "default"
+	bindsym g exec dwb  http://google.com, mode "default"
+	bindsym i exec dwb  http://i3wm.org/docs/userguide.html, mode "default"
+	bindsym k exec dwb  https://www.kernel.org/, mode "default"
+	bindsym l exec dwb  https://linux.org, mode "default"
+	bindsym o exec dwb  https://openvz.org, mode "default"
+	bindsym p exec dwb  file:///home/ali/plot.svg, mode "default"
+	bindsym r exec dwb  http://reddit.com, mode "default"
+	bindsym s exec dwb  http://slashdot.org, mode "default"
+	bindsym y exec dwb  https://youtube.com, mode "default"
+	bindsym w exec dwb  https://wiki.archlinux.org, mode "default"
+	# back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+			}
+bindsym $mod+b mode "brows" workspace 1:explore
+
+mode "tray" {
+	#> These tray presets are available, 
+	#> as soon as the 'tray' mode is entered.
+    	bindsym b exec blueman-applet, mode "default"
+    	bindsym Shift+b exec pkill blueman-applet, mode "default"
+    	bindsym n exec /usr/bin/nm-applet --sm-disable, mode "default"
+    	bindsym Shift+n exec pkill nm-applet, mode "default"
+    	bindsym x exec xcompmgr -cf -r 0 -D 6, mode "default"
+    #> back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+			}
+bindsym $mod+t mode "tray" 
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available
+
+bar {
+		colors {
+       background #000000
+       statusline #999999
+        separator #666666
+
+        focused_workspace  #888888 #222222 #999999
+        active_workspace   #333333 #5f776a #ffffff
+        inactive_workspace #333333 #000000 #999999
+        urgent_workspace   #2F3344 #B00000 #FDF801
+   }
+		status_command /home/$USER/.i3/scripts/conky-i3bar
+		position top
+#		mode hide
+		workspace_buttons yes
+	
+		font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 10
+#		font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+}
+
+#######################################################################
+# automatically start i3-config-wizard to offer the user to create a
+# keysym-based config which used his favorite modifier (alt or windows)
+#
+# i3-config-wizard will not launch if there already is a config file
+# in ~/.i3/config.
+#
+# Please remove the following exec line:
+#######################################################################
+#exec i3-config-wizard

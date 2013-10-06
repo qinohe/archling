@@ -1,0 +1,6 @@
+# Create the user directory for live session named 'ali', short for archling
+if [ ! -d /home/ali ]; then
+    mkdir /home/ali && chown ali /home/ali
+fi
+# Copy files over to home
+su -c "cp -r /etc/skel/.* /home/ali/" ali
