@@ -13,6 +13,16 @@ cp -aT /etc/skel/ /root/
 useradd -m -g users -G "adm,audio,floppy,log,lp,network,rfkill,scanner,storage,systemd-journal,optical,power,wheel" -s /usr/bin/zsh ali
 usermod -p '' ali
 
+mkdir -p /build-tmp
+git clone https://github.com/falconindy/cower /build-tmp
+cd /build-tmp
+make 
+make install
+make clean
+cd /
+rm -r /build-tmp
+
+
 chmod 750 /etc/sudoers.d
 chmod 440 /etc/sudoers.d/g_wheel
 
