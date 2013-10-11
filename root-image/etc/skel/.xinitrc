@@ -33,9 +33,9 @@ xset fp rehash
 
 case $wm in
 i3)
-        exec /usr/bin/i3 >~/.i3/logs/i3log-$(date +'%F-%k-%M-%S') 2>&1
+        exec /usr/bin/i3
     ;;
 *)
-	exec /usr/bin/i3 >~/.i3/logs/i3log-$(date +'%F-%k-%M-%S') 2>&1
+	exec /usr/bin/i3
     ;;
 esac

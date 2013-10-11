@@ -11,6 +11,7 @@ usermod -s /usr/bin/zsh root
 cp -aT /etc/skel/ /root/
 
 useradd -m -g users -G "adm,audio,floppy,log,lp,network,rfkill,scanner,storage,systemd-journal,optical,power,wheel" -s /usr/bin/zsh ali
+usermod -p '' ali
 
 chmod 750 /etc/sudoers.d
 chmod 440 /etc/sudoers.d/g_wheel
