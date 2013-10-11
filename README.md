@@ -34,6 +34,7 @@ Email (qinohe)[add](g(mail)(com)
 * Available for panel lovers, xfce4-panel, but not started by default, dynamically created.
 * Many programs are installed with a graphic interface
 * Much more, checkout packages.x86_64
+* Cower will be installed during creating the ISO, so you have easy AUR access.
 
 
 ##Building the files
