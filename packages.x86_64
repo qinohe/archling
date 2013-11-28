@@ -2,8 +2,6 @@ gummiboot
 prebootloader
 refind-efi
 
-
-
 arch-install-scripts
 b43-fwcutter
 btrfs-progs
@@ -80,8 +78,7 @@ bash-docs
 bashdb
 binutils
 bison
-blueman
-bluez4
+bluez
 cmus
 colord
 conky
@@ -93,6 +90,7 @@ efibootmgr
 faenza-icon-theme
 fakeroot
 filezilla
+flashplugin
 flex
 fontforge
 gcc
@@ -161,7 +159,6 @@ tamsyn-font
 tcpflow
 transset-df
 tree
-truecrypt
 ttf-bitstream-vera
 ttf-dejavu
 unison
@@ -176,14 +173,28 @@ xbindkeys
 xchm
 xcompmgr
 xdotool
+xf86-video-ark
+xf86-video-apm
+xf86-video-cirrus
+xf86-video-chips
+xf86-video-dummy
+xf86-video-glint
+xf86-video-v4l
 xf86-input-synaptics
 xf86-video-fbdev
 xf86-video-intel
+xf86-video-mga
+xf86-video-openchrome
+xf86-video-siliconmotion
+xf86-video-sis
 xf86-video-vesa
+xf86-video-vmware
+xf86-input-vmmouse
 xf86-video-modesetting
 xfce4-panel
 xorg-server
 xorg-server-utils
+xorg-utils
 xorg-xcalc
 xorg-xclock
 xorg-xedit
@@ -196,3 +207,7 @@ xsane
 xterm
 zip
 
+gksu 
+grip 
+gnome-alsamixer 
+virtualbox
